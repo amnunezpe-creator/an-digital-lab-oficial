@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --negro: #111827;
+    --negro: #0f172a;
+    --azul: #2563eb;
+    --azul-oscuro: #1d4ed8;
     --blanco: #ffffff;
-    --gris: #6B7280;
+    --gris: #64748b;
     --gris-claro: #f8fafc;
-    --azul: #2563EB;
-    --azul-hover: #1D4ED8;
+    --borde: #e5e7eb;
     --verde: #22c55e;
+    --sombra: 0 20px 50px rgba(15, 23, 42, 0.08);
 }
 
 * {
@@ -26,33 +28,40 @@ body {
     background: var(--blanco);
 }
 
+/* HEADER */
+
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(14px);
-    background: rgba(255, 255, 255, 0.88);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    height: 86px;
+    padding: 0 10%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 18px 10%;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--borde);
 }
 
 .logo img {
-    height: 55px;
+    height: 56px;
+    width: auto;
+    display: block;
 }
 
 nav {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 26px;
 }
 
 nav a {
     text-decoration: none;
     color: var(--gris);
-    font-weight: 800;
-    transition: 0.3s;
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.25s ease;
 }
 
 nav a:hover {
@@ -61,136 +70,137 @@ nav a:hover {
 
 .menu-btn {
     display: none;
-    background: none;
+    background: transparent;
     border: none;
     font-size: 30px;
     cursor: pointer;
+    color: var(--negro);
 }
 
+/* HERO */
+
 .hero {
-    min-height: 92vh;
+    min-height: calc(100vh - 86px);
+    padding: 110px 10%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 90px 10%;
     text-align: center;
     color: white;
-    position: relative;
     overflow: hidden;
+    position: relative;
     background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.7), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(29, 78, 216, 0.8), transparent 35%),
-        linear-gradient(135deg, #020617, #111827, #1D4ED8);
+        radial-gradient(circle at 20% 15%, rgba(37, 99, 235, 0.75), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(29, 78, 216, 0.55), transparent 32%),
+        linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e3a8a 100%);
 }
 
 .hero::before {
     content: "";
     position: absolute;
-    width: 500px;
-    height: 500px;
-    background: rgba(255,255,255,0.12);
-    filter: blur(120px);
-    top: -160px;
-    left: -160px;
-    animation: floatGlow 8s infinite alternate ease-in-out;
-}
-
-@keyframes floatGlow {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(140px, 100px);
-    }
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: linear-gradient(to bottom, black, transparent);
 }
 
 .contenido {
+    max-width: 980px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .etiqueta {
     display: inline-block;
-    background: rgba(255,255,255,0.14);
-    padding: 10px 20px;
-    border-radius: 100px;
+    margin-bottom: 26px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #dbeafe;
+    font-size: 14px;
     font-weight: 800;
-    margin-bottom: 25px;
 }
 
 .hero h1 {
-    font-size: 62px;
-    max-width: 1000px;
-    line-height: 1.08;
-    margin: auto;
+    font-size: clamp(42px, 6vw, 74px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
 }
 
 .hero p {
     max-width: 720px;
-    margin: 25px auto 0;
+    margin: auto;
+    color: #cbd5e1;
     font-size: 19px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .hero-botones {
-    margin-top: 35px;
+    margin-top: 38px;
     display: flex;
     justify-content: center;
-    gap: 18px;
+    gap: 16px;
     flex-wrap: wrap;
 }
+
+/* BOTONES */
 
 .btn-principal,
 .btn-secundario,
 .cotizar-btn {
-    display: inline-block;
-    padding: 16px 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 15px 30px;
     border-radius: 14px;
     text-decoration: none;
     font-weight: 800;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
 }
 
 .btn-principal {
-    background: white;
+    background: var(--blanco);
     color: var(--azul);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.2);
 }
 
 .btn-secundario {
     color: white;
-    border: 2px solid white;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.08);
 }
 
 .btn-principal:hover,
 .btn-secundario:hover,
 .cotizar-btn:hover,
 form button:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-3px);
 }
 
+/* SECCIONES */
+
 section {
-    padding: 90px 10%;
+    padding: 95px 10%;
     text-align: center;
 }
 
 section h2 {
-    font-size: 40px;
-    margin-bottom: 15px;
+    font-size: clamp(32px, 4vw, 46px);
+    letter-spacing: -1px;
+    margin-bottom: 14px;
 }
 
 .subtitulo {
-    color: var(--gris);
     max-width: 680px;
-    margin: 0 auto 45px;
-    line-height: 1.7;
-}
-
-.servicios,
-.estadisticas,
-.blog {
-    background: var(--blanco);
+    margin: 0 auto 48px;
+    color: var(--gris);
+    font-size: 17px;
+    line-height: 1.8;
 }
 
 .portafolio,
@@ -199,16 +209,18 @@ section h2 {
     background: var(--gris-claro);
 }
 
+/* GRIDS */
+
 .cards,
 .portfolio-grid,
 .stats-grid,
 .blog-grid {
     display: grid;
-    gap: 28px;
+    gap: 26px;
 }
 
 .cards {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .portfolio-grid {
@@ -216,12 +228,14 @@ section h2 {
 }
 
 .stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .blog-grid {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
+
+/* CARDS */
 
 .card,
 .portfolio-card,
@@ -229,45 +243,69 @@ section h2 {
 .blog-card,
 .cotizador-box {
     background: white;
+    border: 1px solid var(--borde);
+    border-radius: 24px;
     padding: 32px;
-    border-radius: 22px;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-    transition: 0.35s ease;
-    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: var(--sombra);
+    transition: 0.25s ease;
+}
+
+.card,
+.portfolio-card,
+.blog-card {
+    text-align: left;
 }
 
 .card:hover,
 .portfolio-card:hover,
 .blog-card:hover,
 .stat:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 55px rgba(37, 99, 235, 0.16);
+    transform: translateY(-6px);
+    border-color: rgba(37, 99, 235, 0.25);
 }
 
 .card h3,
 .portfolio-card h3,
 .blog-card h3 {
-    margin-bottom: 14px;
+    font-size: 20px;
+    margin-bottom: 12px;
 }
 
 .card p,
 .portfolio-card p,
 .blog-card p {
     color: var(--gris);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .portfolio-card span,
 .blog-card span {
-    font-size: 42px;
-    display: block;
-    margin-bottom: 18px;
+    display: inline-flex;
+    width: 54px;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    background: #eff6ff;
+    font-size: 27px;
+}
+
+/* ESTADÍSTICAS */
+
+.estadisticas {
+    background: white;
+}
+
+.stat {
+    text-align: center;
 }
 
 .stat h3 {
-    font-size: 42px;
+    font-size: 44px;
     color: var(--azul);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
 }
 
 .stat p {
@@ -275,8 +313,10 @@ section h2 {
     font-weight: 700;
 }
 
+/* COTIZADOR */
+
 .cotizador-box {
-    max-width: 650px;
+    max-width: 720px;
     margin: auto;
     text-align: left;
 }
@@ -284,39 +324,55 @@ section h2 {
 .cotizador-box label {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 18px;
-    border-radius: 14px;
-    background: var(--gris-claro);
+    gap: 14px;
     margin-bottom: 14px;
+    padding: 18px 20px;
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    background: var(--gris-claro);
     font-weight: 800;
     cursor: pointer;
 }
 
 .cotizador-box input {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .total-box {
-    text-align: center;
     margin: 30px 0;
-    padding: 25px;
-    background: linear-gradient(135deg, #2563EB, #111827);
+    padding: 28px;
+    border-radius: 20px;
+    text-align: center;
     color: white;
-    border-radius: 18px;
+    background: linear-gradient(135deg, var(--azul), var(--negro));
 }
 
 .total-box p {
+    color: #dbeafe;
     margin-bottom: 8px;
 }
 
 .total-box h3 {
-    font-size: 34px;
+    font-size: 36px;
 }
 
+.cotizar-btn {
+    width: 100%;
+    background: var(--azul);
+    color: white;
+}
+
+/* BLOG */
+
+.blog-card {
+    min-height: 260px;
+}
+
+/* FORMULARIO */
+
 form {
-    max-width: 620px;
+    max-width: 640px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -326,74 +382,88 @@ form {
 input,
 textarea {
     width: 100%;
-    padding: 17px;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
+    padding: 18px 20px;
+    border: 1px solid var(--borde);
+    border-radius: 16px;
     font-family: inherit;
     font-size: 16px;
+    outline: none;
+    transition: 0.2s ease;
+    background: white;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 textarea {
-    min-height: 150px;
+    min-height: 160px;
     resize: none;
 }
 
 form button {
     padding: 17px;
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
     background: var(--azul);
     color: white;
     font-weight: 800;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.25s ease;
 }
 
 #formMensaje {
     font-weight: 800;
 }
 
+/* WHATSAPP */
+
 .whatsapp {
     position: fixed;
-    right: 25px;
-    bottom: 25px;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1000;
     background: var(--verde);
     color: white;
-    padding: 16px 22px;
-    border-radius: 100px;
-    font-weight: 800;
+    padding: 15px 22px;
+    border-radius: 999px;
     text-decoration: none;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-    z-index: 999;
+    font-weight: 800;
+    box-shadow: 0 16px 35px rgba(34, 197, 94, 0.35);
 }
+
+/* CHAT */
 
 .chat-btn {
     position: fixed;
-    right: 25px;
-    bottom: 95px;
+    right: 24px;
+    bottom: 92px;
+    z-index: 1000;
     width: 58px;
     height: 58px;
-    border-radius: 50%;
     border: none;
+    border-radius: 50%;
     background: var(--azul);
     color: white;
     font-size: 24px;
     cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    box-shadow: 0 16px 35px rgba(37, 99, 235, 0.35);
 }
 
 .chatbot {
     position: fixed;
-    right: 25px;
-    bottom: 165px;
-    width: 330px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    overflow: hidden;
-    display: none;
+    right: 24px;
+    bottom: 166px;
     z-index: 1000;
+    width: 340px;
+    display: none;
+    overflow: hidden;
+    border-radius: 22px;
+    background: white;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+    border: 1px solid var(--borde);
 }
 
 .chatbot.activo {
@@ -401,16 +471,16 @@ form button {
 }
 
 .chat-header {
-    background: linear-gradient(135deg, #2563EB, #111827);
+    padding: 17px 18px;
+    background: linear-gradient(135deg, var(--azul), var(--negro));
     color: white;
-    padding: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .chat-header button {
-    background: none;
+    background: transparent;
     border: none;
     color: white;
     font-size: 22px;
@@ -419,63 +489,71 @@ form button {
 
 .chat-body {
     padding: 18px;
-    max-height: 260px;
+    max-height: 250px;
     overflow-y: auto;
 }
 
 .bot,
 .user {
-    padding: 12px;
+    padding: 12px 14px;
     border-radius: 14px;
     margin-bottom: 10px;
     line-height: 1.5;
+    font-size: 14px;
 }
 
 .bot {
     background: #f1f5f9;
+    color: var(--negro);
 }
 
 .user {
     background: #dbeafe;
+    color: var(--negro);
     text-align: right;
 }
 
 .chat-options {
+    padding: 14px;
     display: grid;
     gap: 8px;
-    padding: 15px;
+    border-top: 1px solid var(--borde);
 }
 
 .chat-options button {
     border: none;
-    background: var(--azul);
-    color: white;
     padding: 12px;
     border-radius: 12px;
+    background: #eff6ff;
+    color: var(--azul);
+    font-weight: 800;
     cursor: pointer;
-    font-weight: 700;
 }
 
+/* FOOTER */
+
 footer {
-    background: var(--negro);
-    color: white;
     padding: 60px 10%;
     text-align: center;
+    background: var(--negro);
+    color: white;
 }
 
 footer p {
     margin-top: 10px;
-    color: #d1d5db;
+    color: #cbd5e1;
 }
 
 .copyright {
+    margin-top: 24px;
     font-size: 14px;
-    margin-top: 25px;
 }
+
+/* ANIMACIONES */
 
 .reveal {
     opacity: 0;
-    transform: translateY(35px);
+    transform: translateY(32px);
     transition: 0.8s ease;
 }
 
@@ -484,9 +562,11 @@ footer p {
     transform: translateY(0);
 }
 
-@media (max-width: 768px) {
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
     header {
-        padding: 16px 6%;
+        padding: 0 6%;
     }
 
     .menu-btn {
@@ -495,35 +575,41 @@ footer p {
 
     nav {
         position: absolute;
-        top: 88px;
+        top: 86px;
         left: 0;
         width: 100%;
-        background: white;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 25px;
+        padding: 24px;
         display: none;
+        flex-direction: column;
+        background: white;
+        border-bottom: 1px solid var(--borde);
     }
 
     nav.activo {
         display: flex;
     }
 
-    .hero h1 {
-        font-size: 38px;
+    .hero {
+        padding: 90px 6%;
     }
 
     section {
-        padding: 70px 6%;
+        padding: 75px 6%;
     }
 
-    section h2 {
-        font-size: 31px;
+    .card,
+    .portfolio-card,
+    .blog-card {
+        text-align: center;
     }
 
     .chatbot {
-        width: calc(100% - 40px);
-        right: 20px;
+        width: calc(100% - 32px);
+        right: 16px;
+    }
+
+    .whatsapp {
+        font-size: 14px;
+        padding: 14px 18px;
     }
 }
